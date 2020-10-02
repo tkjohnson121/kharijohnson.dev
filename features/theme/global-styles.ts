@@ -17,7 +17,6 @@ export const globalStyles: ThemedStyles = (theme) => css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: ${theme.borders['2px']} transparent;
     font-family: 'SF Pro Display', --apple-system;
   }
 
@@ -35,6 +34,12 @@ export const globalStyles: ThemedStyles = (theme) => css`
     background-color: ${theme.colors.background};
     color: ${theme.colors.text};
     z-index: ${theme.zIndices['auto']};
+
+    *,
+    *:before,
+    *:after {
+      border: ${theme.borders['2px']} transparent;
+    }
 
     *:focus {
       border: ${theme.borders['2px']} ${theme.colors['info']};
@@ -92,10 +97,9 @@ export const globalStyles: ThemedStyles = (theme) => css`
   checkbox,
   form,
   pre {
-    line-height: ${theme.lineHeights.normal};
+    line-height: ${theme.lineHeights.taller};
     font-weight: ${theme.fontWeights.normal};
     font-family: ${theme.fonts.body};
-    font-size: ${theme.fontSizes.md};
     font-size: ${theme.fontSizes.md};
     letter-spacing: ${theme.letterSpacings.normal};
   }
@@ -106,7 +110,7 @@ export const globalStyles: ThemedStyles = (theme) => css`
 
   a {
     text-decoration: none;
-    color: ${theme.colors.text};
+    color: ${theme.colors.highlight};
   }
 
   img {

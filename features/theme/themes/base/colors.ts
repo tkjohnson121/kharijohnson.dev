@@ -1,24 +1,21 @@
 import { ThemeColors } from '../../theme';
 
 const colors: ThemeColors = {
-  text: '#000',
-  background: '#fafaff',
-  primary: '#11e',
-  secondary: '#c0c',
-  highlight: '#e0e',
-  muted: 'hsl(10, 20%, 94%)',
-  error: '#cc0000',
-  success: '#37be37',
-  info: '#17a2b8',
-  warning: '#ffc10a',
+  text: 'hsl(0, 0%, 11%)',
+  background: 'hsl(240, 100%, 99%)',
+  primary: 'hsl(343, 99%, 60%)',
+  secondary: 'hsl(283, 100%, 12%)',
+  highlight: 'hsl(181, 84%, 90%)',
+  muted: 'hsl(291, 34%, 26%)',
+
+  error: 'hsl(360, 100%, 40%)',
+  success: 'hsl(120, 55%, 48%)',
+  info: 'hsl(188, 78%, 41%)',
+  warning: 'hsl(45, 100%, 52%)',
   modes: {
     dark: {
-      text: '#fff',
-      background: '#000',
-      primary: '#0fc',
-      secondary: '#0cf',
-      highlight: '#f0c',
-      muted: '#011',
+      text: '#fafaff',
+      background: '#1c1c1c',
     },
   },
 
