@@ -16,8 +16,17 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "common": ["common/"],
+      "features": ["features/"],
+      "pages": ["pages/"],
+      "theme": ["features/theme"],
+      "utils": ["utils/"]
+    },
+    "types": ["node", "@emotion/core", "jest"]
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "**/*.test.ts"],
   "include": ["**/*.ts", "**/*.tsx"]
 }
