@@ -31,13 +31,13 @@ export const globalStyles: ThemedStyles = (theme) => css`
   main {
     max-width: 100vw;
     overflow-x: hidden;
-    background-color: ${theme.colors.background};
     color: ${theme.colors.text};
     z-index: ${theme.zIndices['auto']};
 
     *,
     *:before,
     *:after {
+      tab-index: 0;
       border: ${theme.borders['2px']} transparent;
     }
 
@@ -110,7 +110,7 @@ export const globalStyles: ThemedStyles = (theme) => css`
 
   a {
     text-decoration: none;
-    color: ${theme.colors.highlight};
+    color: ${theme.colors.primary};
   }
 
   img {

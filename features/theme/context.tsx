@@ -21,7 +21,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = React.useState(themes.dark);
+  const [theme, setTheme] = React.useState(themes.base);
 
   const changeTheme = (name: 'base' | 'dark' | 'light') => {
     typeof window !== 'undefined' &&

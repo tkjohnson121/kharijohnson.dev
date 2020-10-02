@@ -1,4 +1,5 @@
 export const easing = [0.6, -0.05, 0.01, 0.99];
+export const easingCrazy = [0.6, -0.05, 0.41, 0.99];
 
 export const pageTransition = {
   initial: { opacity: 0 },
@@ -20,7 +21,7 @@ export const fadeInUp = {
     y: 0,
     transition: {
       duration: 0.45,
-      ease: easing,
+      ease: easingCrazy,
     },
   },
   exit: { opacity: 0, y: 20 },
