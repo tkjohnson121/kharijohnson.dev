@@ -1,4 +1,7 @@
-* 400ec3b (HEAD -> main) update version
+* d97c831 (HEAD -> main) fix tests
+* 76ae147 (tag: v1.0.1, origin/main) v1.0.1
+* 56872ae update changelog
+* 400ec3b update version
 * 0e252c6 add home page
 * 1adcbeb configure theme
 * 53cad01 init
