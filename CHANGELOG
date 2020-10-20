@@ -1,5 +1,8 @@
-* d97c831 (HEAD -> main) fix tests
-* 76ae147 (tag: v1.0.1, origin/main) v1.0.1
+* 9f3c013 (HEAD -> main) fix imports
+* de04384 (tag: v1.0.2, origin/main) v1.0.2
+* 4e035d4 update changelog
+* d97c831 fix tests
+* 76ae147 (tag: v1.0.1) v1.0.1
 * 56872ae update changelog
 * 400ec3b update version
 * 0e252c6 add home page
