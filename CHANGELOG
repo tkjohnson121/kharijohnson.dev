@@ -1,5 +1,7 @@
-* 9f3c013 (HEAD -> main) fix imports
-* de04384 (tag: v1.0.2, origin/main) v1.0.2
+* b191286 (HEAD -> main, tag: v1.0.3, origin/main) v1.0.3
+* a50fc91 update changelog
+* 9f3c013 fix imports
+* de04384 (tag: v1.0.2) v1.0.2
 * 4e035d4 update changelog
 * d97c831 fix tests
 * 76ae147 (tag: v1.0.1) v1.0.1

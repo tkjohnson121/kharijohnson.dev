@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import { pageTransition } from 'theme';
 
