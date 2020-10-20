@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import * as React from 'react';
-import { ThemeProvider } from 'theme';
+import { ThemeProvider } from '../features/theme';
 
 const App = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {

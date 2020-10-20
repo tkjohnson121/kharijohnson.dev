@@ -1,7 +1,7 @@
 import { css, SerializedStyles } from '@emotion/core';
-import { Layout } from 'common';
 import { motion } from 'framer-motion';
 import { FaGithub, FaGitlab, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { Layout } from '../common';
 import {
   easing,
   easingCrazy,
@@ -10,7 +10,7 @@ import {
   listAnimation,
   listChildAnimation,
   Theme,
-} from 'theme';
+} from '../features/theme';
 
 const styles: { [key: string]: (theme: Theme) => SerializedStyles } = {
   container: (theme) => css`
@@ -20,13 +20,17 @@ const styles: { [key: string]: (theme: Theme) => SerializedStyles } = {
     align-items: center;
     justify-content: center;
     margin: 5% auto;
-    padding: 10% 5%;
     box-shadow: ${theme.shadows['xl']};
     border-radius: ${theme.radii['lg']};
     max-width: 80vw;
+    background-image: url('/profile-pic.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     @media screen and (min-width: ${theme.space['2xl']}) {
       flex-direction: row;
+      padding: 10% 5%;
     }
   `,
   image: (theme) => css`
@@ -34,9 +38,12 @@ const styles: { [key: string]: (theme: Theme) => SerializedStyles } = {
     display: block;
     border-radius: ${theme.radii['lg']};
   `,
-  body: () => css`
-    flex: 1 1 70%;
+  body: (theme) => css`
+    background-color: ${theme.colors.blackAlpha[600]};
+    flex: 0 0 70%;
+    padding: ${theme.space[8]} ${theme.space[4]};
     text-align: center;
+    max-width: 100%;
   `,
   title: () => css``,
   subtitle: (theme) => css`

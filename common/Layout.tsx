@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
-import { pageTransition } from 'theme';
+import { pageTransition } from '../features/theme';
 
 export const Layout = ({
   children,
