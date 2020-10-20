@@ -1,6 +1,5 @@
 import { css, SerializedStyles } from '@emotion/core';
-import Layout from 'common/layout';
-import { Theme } from 'features/theme/theme';
+import { Layout } from 'common';
 import { motion } from 'framer-motion';
 import { FaGithub, FaGitlab, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import {
@@ -10,6 +9,7 @@ import {
   fadeInUp,
   listAnimation,
   listChildAnimation,
+  Theme,
 } from 'theme';
 
 const styles: { [key: string]: (theme: Theme) => SerializedStyles } = {

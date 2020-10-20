@@ -1,5 +1,5 @@
-import Layout from 'common/layout';
 import Link from 'next/link';
+import { Layout } from '../common';
 
 const AboutPage = () => (
   <Layout title="About | Khari Johnson | Contract Software Developer">

@@ -5,15 +5,13 @@ import Head from 'next/head';
 import React, { ReactNode } from 'react';
 import { pageTransition } from 'theme';
 
-type LayoutProps = {
-  children?: ReactNode;
-  title?: string;
-};
-
-const Layout = ({
+export const Layout = ({
   children,
   title = 'Khari Johnson | Software Developer',
-}: LayoutProps) => {
+}: {
+  children?: ReactNode;
+  title?: string;
+}) => {
   const router = useRouter();
 
   return (
