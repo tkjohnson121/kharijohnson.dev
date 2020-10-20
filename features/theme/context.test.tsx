@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, wait } from '../../utils/setup-tests';
+import { fireEvent, render } from '../../utils/setup-tests';
 import { useTheme } from './context';
 
 const WithThemeProvider = () => {
@@ -21,17 +21,19 @@ describe('feat: theme -> useTheme()', () => {
   it('renders the correct theme and can toggle', async () => {
     const { getByText } = render(<WithThemeProvider />);
 
+    // toggle theme button
     const themeToggle = getByText(/change theme/gi);
-    const isLightTheme = () => !!getByText(/"name": "light"/gi);
-    const isDarkTheme = () => !!getByText(/"name": "dark"/gi);
-
     expect(themeToggle).toBeTruthy();
+
+    const isDarkTheme = () => !!getByText(/"name": "dark"/gi);
+    const isLightTheme = () => !!getByText(/"name": "light"/gi);
+
+    // dark theme is enabled by default
     expect(isDarkTheme()).toBeTruthy();
 
-    await wait(() => {
-      fireEvent.click(themeToggle);
-    });
+    fireEvent.click(themeToggle);
 
+    // light theme is enabled after switching
     expect(isLightTheme()).toBeTruthy();
   });
 

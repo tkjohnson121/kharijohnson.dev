@@ -8,7 +8,7 @@ import * as themes from './themes';
 export const ThemeContext = React.createContext<{
   theme: Theme;
   changeTheme: (name: 'base' | 'dark' | 'light') => void | undefined;
-}>({ theme: themes.base, changeTheme: () => {} });
+}>({ theme: themes.dark, changeTheme: () => {} });
 
 export const useTheme = () => {
   const context = React.useContext(ThemeContext);
@@ -21,7 +21,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = React.useState(themes.base);
+  const [theme, setTheme] = React.useState(themes.dark);
 
   const changeTheme = (name: 'base' | 'dark' | 'light') => {
     typeof window !== 'undefined' &&
