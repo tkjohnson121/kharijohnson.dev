@@ -5,45 +5,20 @@ import { ThemedStyles } from './theme';
 export const globalStyles: ThemedStyles = (theme) => css`
   ${emotionReset}
 
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 400;
-    src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
-  }
-
   *,
   *:before,
   *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'SF Pro Display', --apple-system;
-  }
-
-  .text {
-    border-radius: ${theme.radii['md']};
-    background-color: ${theme.colors.whiteAlpha['300']};
-    padding: ${theme.space[4]};
   }
 
   html,
-  body,
-  main {
+  body {
     max-width: 100vw;
     overflow-x: hidden;
     color: ${theme.colors.text};
     z-index: ${theme.zIndices['auto']};
-
-    *,
-    *:before,
-    *:after {
-      tab-index: 0;
-      border: ${theme.borders['2px']} transparent;
-    }
-
-    *:focus {
-      border: ${theme.borders['2px']} ${theme.colors['info']};
-    }
   }
 
   h1,
@@ -52,6 +27,7 @@ export const globalStyles: ThemedStyles = (theme) => css`
   h4,
   h5,
   h6 {
+    font-family: ${theme.fonts.heading};
     font-weight: ${theme.fontWeights.semibold};
     letter-spacing: ${theme.letterSpacings.wider};
     line-height: ${theme.lineHeights['short']};

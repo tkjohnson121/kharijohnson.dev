@@ -1,199 +1,453 @@
-import { css, SerializedStyles } from '@emotion/core';
-import { motion } from 'framer-motion';
-import { FaGithub, FaGitlab, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { css } from '@emotion/core';
+import { Theme, useTheme } from 'theme';
 import { Layout } from '../common';
-import {
-  easing,
-  easingCrazy,
-  fadeInDown,
-  fadeInUp,
-  listAnimation,
-  listChildAnimation,
-  Theme,
-} from '../features/theme';
 
-const styles: { [key: string]: (theme: Theme) => SerializedStyles } = {
-  container: (theme) => css`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5% auto;
-    box-shadow: ${theme.shadows['xl']};
-    border-radius: ${theme.radii['lg']};
-    max-width: 80vw;
-    background-image: url('/profile-pic.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+const IndexPage = () => {
+  const { theme, changeTheme } = useTheme();
 
-    @media screen and (min-width: ${theme.space['2xl']}) {
-      flex-direction: row;
-      padding: 10% 5%;
-    }
-  `,
-  image: (theme) => css`
-    flex: 1 1 30%;
-    display: block;
-    border-radius: ${theme.radii['lg']};
-  `,
-  body: (theme) => css`
-    background-color: ${theme.colors.blackAlpha[600]};
-    flex: 0 0 70%;
-    padding: ${theme.space[8]} ${theme.space[4]};
-    text-align: center;
-    max-width: 100%;
-  `,
-  title: () => css``,
-  subtitle: (theme) => css`
-    font-weight: ${theme.fontWeights.bold};
-  `,
-  tagline: () => css`
-    max-width: 60ch;
-    margin: 0 auto;
-  `,
-  buttonContainer: (theme) => css`
-    margin: ${theme.space[4]} auto;
-    flex: 1 1 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `,
-  link: (theme) => css`
-    cursor: pointer;
-    margin: ${theme.space[2]} ${theme.space[4]};
-    background-color: ${theme.colors.primary};
-    color: ${theme.colors.background};
-    font-weight: ${theme.fontWeights.bold};
-    text-transform: uppercase;
+  return (
+    <Layout title="Khari Johnson | Contract Software Developer">
+      <h1 className="display">Hello, World!</h1>
 
-    padding: ${theme.space[2]} ${theme.space[4]};
-    display: flex;
-    align-items: center;
-    border-radius: ${theme.radii['lg']};
-    transition: all 350ms cubic-bezier(${easingCrazy.join(',')});
+      <button
+        onClick={() => changeTheme(theme.name === 'light' ? 'dark' : 'light')}
+      >
+        click Me
+      </button>
 
-    &:hover {
-      color: ${theme.colors.primary};
-      background-color: ${theme.colors.background};
-    }
-  `,
-  smList: (theme) => css`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: ${theme.space['xl']};
-    margin: ${theme.space[4]} auto;
-  `,
-  smItem: (theme) => css`
-    a {
-      padding: ${theme.space[2]} ${theme.space[4]};
-      display: flex;
-      align-items: center;
-      color: ${theme.colors.text};
-      border-radius: ${theme.radii['lg']};
-      transition: all 150ms cubic-bezier(${easing.join(',')});
-
-      svg {
-        height: 100%;
-        width: 100%;
-        margin-right: ${theme.space[2]};
-        color: ${theme.colors.primary};
-        transition: all 150ms cubic-bezier(${easing.join(',')});
-      }
-
-      &:hover {
-        color: ${theme.colors.primary};
-
-        svg {
-          transform: scale(1.2);
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.primary};
+          `
         }
-      }
-
-      &:focus {
-        svg {
-          transform: scale(0.8);
+      >
+        primary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.primary};
+            color: ${theme.colors.background};
+          `
         }
-      }
-    }
-  `,
+      >
+        primary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.primary};
+          `
+        }
+      >
+        primary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.primary};
+          `
+        }
+      >
+        primary
+      </h1>
+
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.secondary};
+          `
+        }
+      >
+        secondary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.secondary};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        secondary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.secondary};
+          `
+        }
+      >
+        secondary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.secondary};
+          `
+        }
+      >
+        secondary
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.highlight};
+          `
+        }
+      >
+        highlight
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.highlight};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        highlight
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.highlight};
+          `
+        }
+      >
+        highlight
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.highlight};
+          `
+        }
+      >
+        highlight
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.muted};
+          `
+        }
+      >
+        muted
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.muted};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        muted
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.muted};
+          `
+        }
+      >
+        muted
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.muted};
+          `
+        }
+      >
+        muted
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.error};
+          `
+        }
+      >
+        error
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.error};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        error
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.error};
+          `
+        }
+      >
+        error
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.error};
+          `
+        }
+      >
+        error
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.success};
+          `
+        }
+      >
+        success
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.success};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        success
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.success};
+          `
+        }
+      >
+        success
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.success};
+          `
+        }
+      >
+        success
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.info};
+          `
+        }
+      >
+        info
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.info};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        info
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.info};
+          `
+        }
+      >
+        info
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.info};
+          `
+        }
+      >
+        info
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.warning};
+          `
+        }
+      >
+        warning
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.warning};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        warning
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.warning};
+          `
+        }
+      >
+        warning
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.warning};
+          `
+        }
+      >
+        warning
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+          `
+        }
+      >
+        text
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        text
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.text};
+          `
+        }
+      >
+        text
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.text};
+          `
+        }
+      >
+        text
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+          `
+        }
+      >
+        background
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        background
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.background};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        background
+      </h1>
+      <h1
+        className="display"
+        css={(theme: Theme) =>
+          css`
+            background-color: ${theme.colors.text};
+            color: ${theme.colors.background};
+          `
+        }
+      >
+        background
+      </h1>
+    </Layout>
+  );
 };
-
-const IndexPage = () => (
-  <Layout title="Khari Johnson | Contract Software Developer">
-    <section css={styles.container}>
-      <div css={styles.body}>
-        <motion.h1 variants={fadeInDown} css={styles.title}>
-          Khari Johnson
-        </motion.h1>
-        <motion.p css={styles.subtitle} variants={fadeInDown}>
-          Software Developer
-        </motion.p>
-
-        <motion.p css={styles.tagline} variants={fadeInDown}>
-          Lover of adrenaline and good stories. Currently residing in
-          Gainesville, FL solving problems with code.
-        </motion.p>
-
-        <div css={styles.buttonContainer}>
-          <motion.a
-            css={styles.link}
-            href="https://calendly.com/gvempire/discover"
-            target="_new"
-            rel="noreferer noopener"
-            variants={fadeInUp}
-          >
-            Contact
-          </motion.a>
-
-          <motion.a
-            css={styles.link}
-            href="https://gvempire.dev"
-            variants={fadeInUp}
-          >
-            GVEMPIRE
-          </motion.a>
-        </div>
-
-        <motion.ul css={styles.smList} variants={listAnimation}>
-          {[
-            {
-              text: 'Github',
-              href: 'https://github.com/tkjohnson121',
-              Icon: FaGithub,
-            },
-            {
-              text: 'Gitlab',
-              href: 'https://gitlab.com/tkjohnson121',
-              Icon: FaGitlab,
-            },
-            {
-              text: 'Twitter',
-              href: 'https://twitter.com/tkjohnson121',
-              Icon: FaTwitter,
-            },
-            {
-              text: 'LinkedIn',
-              href: 'https://linkedin.com/in/khari-johnson',
-              Icon: FaLinkedin,
-            },
-          ].map(({ text, href, Icon }) => (
-            <motion.li
-              css={styles.smItem}
-              variants={listChildAnimation}
-              key={text}
-            >
-              <a href={href} rel="noreferrer noopener" target="_new">
-                <Icon /> {text}
-              </a>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
-    </section>
-  </Layout>
-);
 
 export default IndexPage;
