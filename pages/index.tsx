@@ -1,4 +1,5 @@
 import { GithubStats } from 'features/dashboard/github-stats';
+import { SpotifyStats } from 'features/dashboard/spotify-stats';
 import { WakaTimeStats } from 'features/dashboard/wakatime-stats';
 import { NextPage } from 'next';
 import React from 'react';
@@ -16,6 +17,8 @@ export const Dashboard: NextPage = () => {
       <WakaTimeStats />
 
       <GithubStats />
+
+      <SpotifyStats />
     </Layout>
   );
 };

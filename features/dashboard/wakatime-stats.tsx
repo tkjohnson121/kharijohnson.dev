@@ -37,28 +37,45 @@ export const WakaTimeStats = () => {
   return data ? (
     <>
       <ul>
-        <li>Total: {data.human_readable_total_including_other_language}</li>
+        <li className="text-3xl mt-4">Wakatime</li>
         <li>
-          Daily Coding Average:{' '}
-          {data.human_readable_daily_average_including_other_language}
-        </li>
-        <li>Best Day: {data.best_day.text}</li>
-      </ul>
+          <p className="text-xl mt-4">Total</p>
 
-      <ul>
-        <li>
-          Top Languages:{' '}
-          {data.languages
-            .slice(0, 3)
-            .map((lang) => `${lang.name} (${lang.percent}%)`)
-            .join(', ')}
+          <div>{data.human_readable_total_including_other_language}</div>
         </li>
+
         <li>
-          Recent Projects:{' '}
-          {data.projects
-            .slice(0, 3)
-            .map((proj) => `${proj.name} (${proj.percent}%)`)
-            .join(', ')}
+          <p className="text-xl mt-4">Daily Coding Average</p>
+          <div>
+            {data.human_readable_daily_average_including_other_language}
+          </div>
+        </li>
+
+        <li>
+          <p className="text-xl mt-4">Best Day</p>
+          <div>{data.best_day.text}</div>
+        </li>
+
+        <li>
+          <p className="text-xl mt-4">Recent Languages</p>
+          <ul>
+            {data.languages.slice(0, 5).map((lang) => (
+              <li key={lang.name}>
+                {lang.name} ({lang.percent}%)
+              </li>
+            ))}
+          </ul>
+        </li>
+
+        <li>
+          <p className="text-xl mt-4">Recent Projects</p>
+          <ul>
+            {data.projects.slice(0, 3).map((proj) => (
+              <li key={proj.name}>
+                {proj.name} ({proj.percent}%)
+              </li>
+            ))}
+          </ul>
         </li>
       </ul>
     </>

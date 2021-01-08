@@ -40,6 +40,7 @@ export const GithubStats = () => {
 
   return data ? (
     <ul>
+      <li className="text-3xl mt-4">Github</li>
       <li>Stars: {data.stars}</li>
       <li>Profile Image: {data.user.avatar_url}</li>
       <li>Repo Count: {data.user.public_repos}</li>
@@ -48,7 +49,9 @@ export const GithubStats = () => {
         <ul>
           {data.repos.map((repo) => (
             <li>
-              <p>{repo.full_name}</p>
+              <a href={repo.html_url} target="_new">
+                {repo.full_name}
+              </a>
             </li>
           ))}
         </ul>
