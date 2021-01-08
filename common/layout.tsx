@@ -1,27 +1,52 @@
-import Head from 'next/head';
+import { NextSeo, NextSeoProps } from 'next-seo';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
 
 export const Layout = ({
   children,
-  title = 'Khari Johnson | Software Developer',
+  seo = { title: 'Khari Johnson | Software Developer' },
 }: {
   children?: ReactNode;
-  title?: string;
+  seo?: NextSeoProps;
 }) => {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      <NextSeo
+        {...seo}
+        title={
+          seo.title +
+          ' | Khari Johnson | Software Developer and Backyard Mechanic'
+        }
+      />
 
-      <header className="flex align-middle justify-end w-screen fixed p-4">
-        <nav className="flex align-middle justify-end w-auto border-retro-1 border-pink-100 stroke-2 shadow-retro-glitch bg-transparent rounded-md">
+      <header className="p-4">
+        <div className="w-screen">
+          <h1
+            className="text-5xl p-2 font-semibold italic leading-normal tracking-wider"
+            style={{
+              color: 'white',
+              maxWidth: '80%',
+              whiteSpace: 'nowrap',
+              overflowX: 'scroll',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {seo.title}
+          </h1>
+
+          <div className="my-4 h-1 bg-pink-500 w-full " />
+          <p className="text-base max-w-prose">{seo.description}</p>
+        </div>
+
+        <nav
+          className="z-50 fixed top-6 right-6 flex bg-transparent rounded-md shadow-retro-glitch bg-purple-900"
+          style={{
+            alignSelf: 'flex-start',
+          }}
+        >
           {['/', 'blog', 'snippets', 'about'].map((link) => (
             <Link href={link} key={link} passHref>
-              <a className="ml-4 p-4 block hover:bg-purple-500">
+              <a className="p-4 block hover:bg-cyan-500 hover:text-purple-500 tracking-wider italic">
                 {link.toUpperCase()}
               </a>
             </Link>
@@ -29,7 +54,7 @@ export const Layout = ({
         </nav>
       </header>
 
-      <main>{children}</main>
+      <main className="min-h-screen p-4">{children}</main>
     </>
   );
 };

@@ -2,7 +2,7 @@ import { Layout } from '../common';
 
 const IndexPage = () => {
   return (
-    <Layout title="Views - Khari Johnson | Contract Software Developer">
+    <Layout seo={{ title: 'Views' }}>
       <h1 className="text-6xl font-bold">Views</h1>
     </Layout>
   );
