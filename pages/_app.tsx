@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import * as React from 'react';
-import { ThemeProvider } from '../features/theme';
+import 'tailwindcss/tailwind.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
@@ -20,11 +20,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, []);
 
-  return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
-  );
+  return <Component {...pageProps} />;
 };
 
 export default App;
