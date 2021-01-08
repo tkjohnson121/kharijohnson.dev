@@ -72,7 +72,7 @@ class MyDocument extends Document {
             name="twitter:image"
             content="kharijohnson.dev/icons/android-chrome-192x192.png"
           />
-          <meta name="twitter:creator" content="@DavidWShadow" />
+          <meta name="twitter:creator" content="@tkjohnson121" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Khari Johnson" />
           <meta
@@ -86,7 +86,7 @@ class MyDocument extends Document {
             content="kharijohnson.dev/icons/apple-touch-icon.png"
           />
         </Head>
-        <body>
+        <body className="bg-white text-purple-900 dark:bg-purple-900 dark:text-white">
           <Main />
           <NextScript />
         </body>

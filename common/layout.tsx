@@ -17,11 +17,13 @@ export const Layout = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <header>
-        <nav className="flex align-middle justify-end w-screen p-4 border-pink-500">
+      <header className="flex align-middle justify-end w-screen fixed p-4">
+        <nav className="flex align-middle justify-end w-auto border-retro-1 border-pink-100 stroke-2 shadow-retro-glitch bg-transparent rounded-md">
           {['/', 'blog', 'snippets', 'about'].map((link) => (
             <Link href={link} key={link} passHref>
-              <a className="ml-4">{link.toUpperCase()}</a>
+              <a className="ml-4 p-4 block hover:bg-purple-500">
+                {link.toUpperCase()}
+              </a>
             </Link>
           ))}
         </nav>
