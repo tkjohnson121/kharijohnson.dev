@@ -4,14 +4,9 @@ import React from 'react';
 export const SpotifyStats = () => {
   const [{ status, data, error }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
-    data?: {
-      TRACKS?: Array<SpotifyTrack>;
-      ARTISTS?: Array<SpotifyArtist>;
-    };
+    data?: { TRACKS?: Array<SpotifyTrack>; ARTISTS?: Array<SpotifyArtist> };
     error?: Error;
-  }>({
-    status: 'idle',
-  });
+  }>({ status: 'idle' });
 
   React.useEffect(() => {
     const fetchData = async (type: SpotifyTypes) => {
@@ -61,8 +56,6 @@ export const SpotifyStats = () => {
     return <pre>Spotify Error: {JSON.stringify(error, null, 2)}</pre>;
   }
 
-  console.log({ data });
-
   return data ? (
     <>
       <ul>
@@ -71,7 +64,7 @@ export const SpotifyStats = () => {
             className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
             style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
           >
-            Top Artists
+            Top Tracks
           </p>
 
           <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">

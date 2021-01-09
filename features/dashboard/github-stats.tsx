@@ -49,7 +49,7 @@ export const GithubStats = () => {
 
       <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
         {data.repos.slice(0, 5).map((repo) => (
-          <li key={repo.name} className="flex ml-8 mb-4">
+          <li key={repo.name} className="flex flex-col ml-8 mb-4">
             <a href={repo.html_url} target="_new" className="font-bold">
               {repo.full_name}
             </a>

@@ -179,7 +179,6 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
     }
 
     if (data.error) {
-      console.log({ data });
       return res.status(data.error.status || 500).json({ error: data.error });
     }
 

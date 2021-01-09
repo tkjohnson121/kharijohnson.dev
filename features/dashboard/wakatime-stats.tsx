@@ -92,23 +92,6 @@ export const WakaTimeStats = () => {
           ))}
         </ul>
       </li>
-
-      <li style={{ flex: '1 1 100%' }}>
-        <p
-          className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
-          style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
-        >
-          Recent Projects
-        </p>
-
-        <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
-          {data.projects.slice(0, 5).map((proj) => (
-            <li key={proj.name} className="flex ml-8 mb-4 font-bold">
-              /{proj.name}
-            </li>
-          ))}
-        </ul>
-      </li>
     </ul>
   ) : (
     <div>Loading...</div>

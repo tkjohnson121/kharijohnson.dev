@@ -20,9 +20,9 @@ export const Layout = ({
       />
 
       <header className="p-4">
-        <div className="w-screen">
+        <div className="w-screen py-2">
           <h1
-            className="text-5xl p-2 font-semibold italic leading-normal tracking-wider"
+            className="text-5xl font-semibold italic leading-normal tracking-wider"
             style={{
               color: 'white',
               maxWidth: '80%',
@@ -34,16 +34,11 @@ export const Layout = ({
             {seo.title}
           </h1>
 
-          <div className="my-4 h-1 bg-pink-500 w-full " />
+          <div className="mb-2 h-1 w-full bg-white" />
           <p className="text-base max-w-prose">{seo.description}</p>
         </div>
 
-        <nav
-          className="z-50 fixed top-6 right-6 flex bg-transparent rounded-md shadow-retro-glitch bg-purple-900"
-          style={{
-            alignSelf: 'flex-start',
-          }}
-        >
+        <nav className="z-50 fixed top-6 right-6 flex bg-transparent bg-purple-900">
           {['/', 'blog', 'snippets', 'about'].map((link) => (
             <Link href={link} key={link} passHref>
               <a className="p-4 block hover:bg-cyan-500 hover:text-purple-500 tracking-wider italic">
