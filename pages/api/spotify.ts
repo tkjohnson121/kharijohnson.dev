@@ -1,10 +1,110 @@
 import fetch from 'isomorphic-fetch';
 import { NextApiRequest, NextApiResponse } from 'next';
+import querystring from 'querystring';
 
 export enum SpotifyTypes {
   CURRENT = 'CURRENT',
-  RECENT = 'RECENT',
+  TRACKS = 'TRACKS',
+  ARTISTS = 'ARTISTS',
 }
+
+export enum SpotifyEndpoints {
+  BASE = 'https://api.spotify.com/v1',
+  TOKEN = `https://accounts.spotify.com/api/token`,
+  CURRENT = `https://api.spotify.com/v1/me/player/currently-playing`,
+  TRACKS = `https://api.spotify.com/v1/me/top/tracks?limit=5`,
+  ARTISTS = `https://api.spotify.com/v1/me/top/artists?limit=5`,
+}
+
+export type SpotifyResponse<T = {}> = {
+  items: Array<T>;
+  total: number;
+  limit: number;
+  offset: number;
+  href: string;
+  previous: null | string;
+  next: string | null;
+};
+
+export type SpotifyArtistResponse = SpotifyResponse<SpotifyArtist[]>;
+export type SpotifyTrackResponse = SpotifyResponse<SpotifyTrack[]>;
+
+export type SpotifyAlbum = {
+  album_type: string;
+  artists: Array<{
+    external_urls: { spotify: string };
+    href: string;
+    id: string;
+    name: string;
+    type: string;
+    uri: string;
+  }>;
+  available_markets: string[];
+  external_urls: { spotify: string };
+  href: string;
+  id: string;
+  images: Array<{
+    height: number;
+    width: number;
+    url: string;
+  }>;
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  total_tracks: number;
+  type: string;
+  uri: string;
+};
+
+export type SpotifyArtist = {
+  external_urls: {
+    spotify: string;
+  };
+  followers: { href: null | string; total: number };
+  genres: string[];
+  href: string;
+  id: string;
+  images: Array<{
+    height: number;
+    url: string;
+    width: number;
+  }>;
+  name: string;
+  popularity: number;
+  type: string;
+  uri: string;
+};
+
+export type SpotifyTrack = {
+  album: SpotifyAlbum;
+  artists: Array<{
+    external_urls: { spotify: string };
+    href: string;
+    id: string;
+    name: string;
+    type: string;
+    uri: string;
+  }>;
+  available_markets: string[];
+  disc_number: number;
+  duration_ms: number;
+  explicit: true;
+  external_ids: {
+    isrc: string;
+  };
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  is_local: false;
+  name: string;
+  popularity: number;
+  preview_url: string;
+  track_number: number;
+  type: string;
+  uri: string;
+};
 
 /**
  * # Spotify Stats
@@ -20,9 +120,6 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
     SPOTIFY_REFRESH_TOKEN: refresh_token,
   } = process.env;
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
-  const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-  const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
-  const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
   const setCache = () =>
     res.setHeader(
@@ -31,13 +128,13 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
     );
 
   const getAccessToken = async () => {
-    const response = await fetch(TOKEN_ENDPOINT, {
+    const response = await fetch(SpotifyEndpoints.TOKEN, {
       method: 'POST',
       headers: {
         Authorization: `Basic ${basic}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
+      body: querystring.stringify({
         grant_type: 'refresh_token',
         refresh_token,
       }),
@@ -46,54 +143,33 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
     return response.json();
   };
 
-  const getNowPlaying = async () => {
-    const { access_token } = await getAccessToken();
-
-    return fetch(NOW_PLAYING_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
-  };
-
-  const getTopTracks = async () => {
-    const { access_token } = await getAccessToken();
-
-    return fetch(TOP_TRACKS_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
-  };
-
   try {
+    const { access_token } = await getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    let data: any;
+
     switch (type) {
       case SpotifyTypes.CURRENT: {
-        const currentlyPlayingResult = await getNowPlaying();
-        const currentlyPlaying = await currentlyPlayingResult.json();
-
-        if (currentlyPlaying.error) {
-          return res
-            .status(currentlyPlaying.error.status || 500)
-            .json({ error: currentlyPlaying.error });
-        }
-
-        setCache();
-        return res.status(200).json({ data: { currentlyPlaying } });
+        const result = await fetch(SpotifyEndpoints[type], { headers });
+        data = await result.json();
+        break;
       }
-      case SpotifyTypes.RECENT: {
-        const recentlyPlayedResult = await getTopTracks();
-
-        const recentlyPlayed = await recentlyPlayedResult.json();
-
-        if (recentlyPlayed.error) {
-          return res
-            .status(recentlyPlayed.error.status || 500)
-            .json({ error: recentlyPlayed.error });
-        }
-
-        setCache();
-        return res.status(200).json({ data: { recentlyPlayed } });
+      case SpotifyTypes.TRACKS: {
+        const result = await fetch(SpotifyEndpoints[type], { headers });
+        const tracks = (await result.json()) as SpotifyTrackResponse;
+        data = tracks.items;
+        break;
+      }
+      case SpotifyTypes.ARTISTS: {
+        const result = await fetch(SpotifyEndpoints[type], { headers });
+        const artists = (await result.json()) as SpotifyArtistResponse;
+        data = artists.items;
+        break;
       }
       default: {
         return res
@@ -101,8 +177,17 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
           .json({ error: { message: 'Invalid Spotify Type' } });
       }
     }
+
+    if (data.error) {
+      console.log({ data });
+      return res.status(data.error.status || 500).json({ error: data.error });
+    }
+
+    setCache();
+    return res.status(200).json({ data });
   } catch (error) {
-    return res.status(error.status || 500).json({ error });
+    console.error(error);
+    return res.status(error?.status || 500).json({ error });
   }
 };
 
