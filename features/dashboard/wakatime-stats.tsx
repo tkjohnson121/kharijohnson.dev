@@ -1,7 +1,7 @@
 import React from 'react';
+import Card from '../../common/card';
+import List from '../../common/list';
 import { WakatimeData, WakatimeErrors } from '../../pages/api/wakatime';
-import Card from './card';
-import List from './list';
 
 export const WakaTimeStats = () => {
   const [{ status, data, errors }, setState] = React.useState<{

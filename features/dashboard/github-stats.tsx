@@ -1,6 +1,6 @@
 import { GithubData, GithubRepo } from 'pages/api/github';
 import React from 'react';
-import List from './list';
+import List from '../../common/list';
 
 export const GithubStats = () => {
   const [{ status, data, errors }, setState] = React.useState<{

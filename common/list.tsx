@@ -12,13 +12,13 @@ export const List: List = ({ title, values, renderValue }) => {
   return (
     <li style={{ flex: '1 1 45%' }} className="mx-4">
       <p
-        className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
+        className="text-sm pb-4 uppercase whitespace-nowrap tracking-wider"
         style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
       >
         {title}
       </p>
 
-      <ul className="ml-auto flex flex-wrap justify-left py-4 text-right">
+      <ul className="ml-auto flex flex-wrap justify-start py-4 ">
         {values ? renderValues() : <div>Loading...</div>}
       </ul>
     </li>

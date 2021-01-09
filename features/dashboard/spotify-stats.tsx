@@ -1,6 +1,6 @@
 import { SpotifyArtist, SpotifyTrack, SpotifyTypes } from 'pages/api/spotify';
 import React from 'react';
-import List from './list';
+import List from '../../common/list';
 
 export const SpotifyStats = () => {
   const [{ status, data, error }, setState] = React.useState<{

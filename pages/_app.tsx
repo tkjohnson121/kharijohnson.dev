@@ -1,6 +1,8 @@
+import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
 import * as React from 'react';
 import 'tailwindcss/tailwind.css';
+import { SEO } from '../next-seo.config';
 
 const App = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
@@ -20,7 +22,12 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <DefaultSeo {...SEO} />
+      <Component {...pageProps} />
+    </>
+  );
 };
 
 export default App;
