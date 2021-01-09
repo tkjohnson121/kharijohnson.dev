@@ -1,5 +1,6 @@
 import { SpotifyArtist, SpotifyTrack, SpotifyTypes } from 'pages/api/spotify';
 import React from 'react';
+import List from './list';
 
 export const SpotifyStats = () => {
   const [{ status, data, error }, setState] = React.useState<{
@@ -56,69 +57,43 @@ export const SpotifyStats = () => {
     return <pre>Spotify Error: {JSON.stringify(error, null, 2)}</pre>;
   }
 
-  return data ? (
+  return (
     <>
-      <ul>
-        <li>
-          <p
-            className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
-            style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
-          >
-            Top Tracks
-          </p>
+      <List
+        title="Top Tracks"
+        values={data?.TRACKS}
+        renderValue={(track: SpotifyTrack) => (
+          <li key={track.id} className="flex mr-4 mb-4 items-center">
+            <img
+              src={track.album.images[0].url}
+              alt={track.name}
+              height="25"
+              width="25"
+              className="rounded-full mr-2 h-8 w-8"
+            />
+            <a href={track.uri} target="_new" className="font-bold">
+              {track.name}
+            </a>
+          </li>
+        )}
+      />
 
-          <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
-            {data.TRACKS?.map((track) => (
-              <li
-                key={track.id}
-                className="flex ml-8 mb-4"
-                style={{ alignItems: 'center' }}
-              >
-                <img
-                  src={track.album.images[0].url}
-                  alt={track.name}
-                  height="25"
-                  width="25"
-                  className="rounded-full mr-2 h-8 w-8"
-                />
-                <a href={track.uri} target="_new" className="font-bold">
-                  {track.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </li>
-
-        <li>
-          <p
-            className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
-            style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
-          >
-            Top Artists
-          </p>
-
-          <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
-            {data.ARTISTS?.map((artist) => (
-              <li
-                key={artist.id}
-                className="flex ml-8 mb-4"
-                style={{ alignItems: 'center' }}
-              >
-                <img
-                  src={artist.images[0].url}
-                  alt={artist.name}
-                  className="rounded-full mr-2 h-8 w-8"
-                />
-                <a href={artist.uri} target="_new" className="font-bold">
-                  {artist.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </li>
-      </ul>
+      <List
+        title="Top Artists"
+        values={data?.ARTISTS}
+        renderValue={(artist: SpotifyArtist) => (
+          <li key={artist.id} className="flex mr-4 mb-4 items-center">
+            <img
+              src={artist.images[0].url}
+              alt={artist.name}
+              className="rounded-full mr-2 h-8 w-8"
+            />
+            <a href={artist.uri} target="_new" className="font-bold">
+              {artist.name}
+            </a>
+          </li>
+        )}
+      />
     </>
-  ) : (
-    <div>Loading...</div>
   );
 };

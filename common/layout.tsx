@@ -20,17 +20,8 @@ export const Layout = ({
       />
 
       <header className="p-4">
-        <div className="w-screen py-2">
-          <h1
-            className="text-5xl font-semibold italic leading-normal tracking-wider"
-            style={{
-              color: 'white',
-              maxWidth: '80%',
-              whiteSpace: 'nowrap',
-              overflowX: 'scroll',
-              textOverflow: 'ellipsis',
-            }}
-          >
+        <div className="w-full ">
+          <h1 className="text-5xl text-white font-semibold italic leading-normal tracking-wider whitespace-nowrap overflow-scroll overflow-ellipsis">
             {seo.title}
           </h1>
 
@@ -38,10 +29,10 @@ export const Layout = ({
           <p className="text-base max-w-prose">{seo.description}</p>
         </div>
 
-        <nav className="z-50 fixed top-6 right-6 flex bg-transparent bg-purple-900">
+        <nav className="z-50 fixed bottom-0 md:bottom-auto md:top-6 left-0 md:left-auto right-0 md:right-6 flex bg-transparent bg-purple-900 overflow-x-scroll">
           {['/', 'blog', 'snippets', 'about'].map((link) => (
             <Link href={link} key={link} passHref>
-              <a className="p-4 block hover:bg-cyan-500 hover:text-purple-500 tracking-wider italic">
+              <a className="p-4 flex-grow text-center block hover:bg-cyan-500 hover:text-purple-500 tracking-wider italic">
                 {link.toUpperCase()}
               </a>
             </Link>
