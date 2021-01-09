@@ -39,24 +39,24 @@ export const GithubStats = () => {
   }
 
   return data ? (
-    <ul>
-      <li className="text-3xl mt-4">Github</li>
-      <li>Stars: {data.stars}</li>
-      <li>Profile Image: {data.user.avatar_url}</li>
-      <li>Repo Count: {data.user.public_repos}</li>
-      <li>
-        Repos
-        <ul>
-          {data.repos.map((repo) => (
-            <li>
-              <a href={repo.html_url} target="_new">
-                {repo.full_name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </li>
-    </ul>
+    <>
+      <p
+        className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
+        style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
+      >
+        Repos ({data.user.public_repos} repos | {data.stars} ⭐️)
+      </p>
+
+      <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
+        {data.repos.slice(0, 5).map((repo) => (
+          <li key={repo.name} className="flex ml-8 mb-4">
+            <a href={repo.html_url} target="_new" className="font-bold">
+              {repo.full_name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
   ) : (
     <div>Loading...</div>
   );

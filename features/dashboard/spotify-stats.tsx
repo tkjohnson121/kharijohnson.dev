@@ -66,23 +66,30 @@ export const SpotifyStats = () => {
   return data ? (
     <>
       <ul>
-        <li className="text-3xl mt-4">Spotify</li>
         <li>
-          <p className="text-xl mt-4">Top Tracks</p>
-          <ul>
+          <p
+            className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
+            style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
+          >
+            Top Artists
+          </p>
+
+          <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
             {data.TRACKS?.map((track) => (
-              <li key={track.external_ids.isrc}>
+              <li
+                key={track.id}
+                className="flex ml-8 mb-4"
+                style={{ alignItems: 'center' }}
+              >
                 <img
                   src={track.album.images[0].url}
-                  alt={track.album.name}
-                  height="200"
-                  width="200"
+                  alt={track.name}
+                  height="25"
+                  width="25"
+                  className="rounded-full mr-2 h-8 w-8"
                 />
-                <a href={track.href} target="_new">
+                <a href={track.uri} target="_new" className="font-bold">
                   {track.name}
-                </a>
-                <a href={track.uri} target="_new">
-                  &gt;
                 </a>
               </li>
             ))}
@@ -90,20 +97,28 @@ export const SpotifyStats = () => {
         </li>
 
         <li>
-          <p className="text-xl mt-4">Top Artists</p>
-          <ul>
+          <p
+            className="text-sm pb-4 uppercase text-left whitespace-nowrap tracking-wider"
+            style={{ flex: '0 0 25%', borderBottom: '1px solid' }}
+          >
+            Top Artists
+          </p>
+
+          <ul className="ml-auto flex flex-wrap justify-end py-4 text-right">
             {data.ARTISTS?.map((artist) => (
-              <li key={artist.id}>
+              <li
+                key={artist.id}
+                className="flex ml-8 mb-4"
+                style={{ alignItems: 'center' }}
+              >
                 <img
                   src={artist.images[0].url}
                   alt={artist.name}
-                  height="200"
-                  width="200"
+                  className="rounded-full mr-2 h-8 w-8"
                 />
-                <a href={artist.external_urls.spotify} target="_new">
+                <a href={artist.uri} target="_new" className="font-bold">
                   {artist.name}
                 </a>
-                <a href={artist.uri}>&gt;</a>
               </li>
             ))}
           </ul>
