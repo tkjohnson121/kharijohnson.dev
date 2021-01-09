@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Card: React.FC<{ title: string; value?: string }> = ({
+export const Card: React.FC<{ title: string; value?: string | number }> = ({
   title,
   value,
 }) => (
@@ -12,7 +12,7 @@ export const Card: React.FC<{ title: string; value?: string }> = ({
       {title}
     </p>
     <div className="text-3xl font-bold whitespace-nowrap">
-      {value ? value : <div>Loading...</div>}
+      {typeof value !== 'undefined' ? value : <div>Loading...</div>}
     </div>
   </li>
 );

@@ -132,7 +132,7 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
   const apiKey = process.env.WAKATIME_API_KEY || '';
   const url = `https://wakatime.com/api/v1/users/current/stats/last_7_days?api_key=${apiKey}`;
   const result = await fetch(url);
-  const { data } = await result.json();
+  const { data } = (await result.json()) as { data: WakatimeData };
 
   res.setHeader(
     'Cache-Control',

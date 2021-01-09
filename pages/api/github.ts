@@ -153,5 +153,7 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
     'public, s-maxage=1200, stale-while-revalidate=600',
   );
 
-  return res.status(200).json({ data: { user: user, repos: myRepos, stars } });
+  return res
+    .status(200)
+    .json({ data: { user: user, repos: myRepos, stars } as GithubData });
 };

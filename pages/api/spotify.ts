@@ -26,8 +26,8 @@ export type SpotifyResponse<T = {}> = {
   next: string | null;
 };
 
-export type SpotifyArtistResponse = SpotifyResponse<SpotifyArtist[]>;
-export type SpotifyTrackResponse = SpotifyResponse<SpotifyTrack[]>;
+export type SpotifyArtistResponse = SpotifyResponse<SpotifyArtist>;
+export type SpotifyTrackResponse = SpotifyResponse<SpotifyTrack>;
 
 export type SpotifyAlbum = {
   album_type: string;
@@ -151,7 +151,10 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
       'Content-Type': 'application/json',
     };
 
-    let data: any;
+    let data:
+      | Array<SpotifyTrack>
+      | Array<SpotifyArtist>
+      | { error: Error & { status?: number } };
 
     switch (type) {
       case SpotifyTypes.CURRENT: {
@@ -178,7 +181,7 @@ export const spotify = async (_: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
-    if (data.error) {
+    if ('error' in data && data.error) {
       return res.status(data.error.status || 500).json({ error: data.error });
     }
 

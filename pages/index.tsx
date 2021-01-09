@@ -1,5 +1,6 @@
 import { GithubStats } from 'features/dashboard/github-stats';
 import { SpotifyStats } from 'features/dashboard/spotify-stats';
+import { StripeStats } from 'features/dashboard/stripe-stats';
 import { WakaTimeStats } from 'features/dashboard/wakatime-stats';
 import { NextPage } from 'next';
 import React from 'react';
@@ -9,6 +10,7 @@ export const Dashboard: NextPage = () => {
   return (
     <Layout seo={{ title: 'Dashboard' }}>
       <ul className="flex flex-wrap align-middle justify-evenly">
+        <StripeStats />
         <WakaTimeStats />
         <GithubStats />
         <SpotifyStats />
