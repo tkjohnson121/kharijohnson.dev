@@ -23,6 +23,7 @@ export type TwitterData = {
 };
 export type TwitterError = { code: number; message: string };
 
+/** @see https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/follow-search-get-users/api-reference/get-users-show  */
 export type TwitterUser = {
   id: number;
   id_str: string;
