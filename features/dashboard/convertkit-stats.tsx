@@ -3,7 +3,7 @@ import { ConvertkitData, ConvertkitTypes } from 'pages/api/convertkit';
 import React from 'react';
 
 export const ConvertkitStats = () => {
-  const [{ status, data, error }, setState] = React.useState<{
+  const [{ status, data }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
     data?: ConvertkitData;
     error?: Error;

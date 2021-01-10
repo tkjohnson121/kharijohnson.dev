@@ -3,7 +3,7 @@ import { StripeData, StripeTypes } from 'pages/api/stripe';
 import React from 'react';
 
 export const StripeStats = () => {
-  const [{ status, data, error }, setState] = React.useState<{
+  const [{ status, data }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
     data?: StripeData;
     error?: Error;

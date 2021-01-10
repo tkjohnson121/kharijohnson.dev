@@ -3,7 +3,7 @@ import React from 'react';
 import List from '../../common/list';
 
 export const SpotifyStats = () => {
-  const [{ status, data, error }, setState] = React.useState<{
+  const [{ status, data }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
     data?: { TRACKS?: Array<SpotifyTrack>; ARTISTS?: Array<SpotifyArtist> };
     error?: Error;

@@ -4,7 +4,7 @@ import List from '../../common/list';
 import { WakatimeData, WakatimeErrors } from '../../pages/api/wakatime';
 
 export const WakaTimeStats = () => {
-  const [{ status, data, errors }, setState] = React.useState<{
+  const [{ status, data }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
     data?: WakatimeData;
     errors?: WakatimeErrors[];

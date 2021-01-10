@@ -3,7 +3,7 @@ import React from 'react';
 import List from '../../common/list';
 
 export const GithubStats = () => {
-  const [{ status, data, errors }, setState] = React.useState<{
+  const [{ status, data }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
     data?: GithubData;
     errors?: Error[];
