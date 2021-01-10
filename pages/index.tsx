@@ -1,3 +1,4 @@
+import { ConvertkitStats } from 'features/dashboard/convertkit-stats';
 import { GithubStats } from 'features/dashboard/github-stats';
 import { SpotifyStats } from 'features/dashboard/spotify-stats';
 import { StripeStats } from 'features/dashboard/stripe-stats';
@@ -10,6 +11,7 @@ export const Dashboard: NextPage = () => {
   return (
     <Layout seo={{ title: 'Dashboard' }}>
       <ul className="flex flex-wrap align-middle justify-evenly">
+        <ConvertkitStats />
         <StripeStats />
         <WakaTimeStats />
         <GithubStats />

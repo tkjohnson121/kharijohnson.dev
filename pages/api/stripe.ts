@@ -13,7 +13,7 @@ export enum StripeEndpoints {
 }
 
 export type StripeResponse<T = []> = {
-  object: string;
+  object: 'list' | 'product';
   data: T;
   has_more: boolean;
   url: string;
@@ -100,7 +100,13 @@ export const stripe = async (_: NextApiRequest, res: NextApiResponse) => {
 
         const revenue =
           transactions.data.length > 0
-            ? transactions.data.reduce((prev, curr) => prev + curr.amount, 0)
+            ? transactions.data
+                .filter(
+                  (transaction) =>
+                    transaction.type === 'charge' ||
+                    transaction.type === 'payment',
+                )
+                .reduce((prev, curr) => prev + +curr.net, 0) / 100
             : 0;
 
         data = { revenue };

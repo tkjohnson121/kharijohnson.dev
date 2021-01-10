@@ -59,7 +59,10 @@ export const StripeStats = () => {
 
   return (
     <>
-      <Card title="Sales" value={data?.revenue} />
+      <Card
+        title="Sales"
+        value={data?.revenue ? '$' + data?.revenue : undefined}
+      />
       <Card title="Products" value={data?.products?.length} />
 
       {/* <List

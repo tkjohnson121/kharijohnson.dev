@@ -35,7 +35,7 @@ export const Layout = ({
           )}
         </div>
 
-        <nav className="z-50 fixed bottom-0 md:bottom-auto md:top-6 left-0 md:left-auto right-0 md:right-6 flex bg-transparent bg-purple-900 overflow-x-scroll">
+        <nav className="bg-black z-50 fixed bottom-0 md:bottom-auto md:top-6 left-0 md:left-auto right-0 md:right-6 flex bg-transparent">
           {['/', 'blog', 'snippets', 'about'].map((link) => (
             <Link href={link} key={link} passHref>
               <a className="p-4 flex-grow text-center block hover:bg-cyan-500 hover:text-purple-500 tracking-wider italic">
