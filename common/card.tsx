@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Card: React.FC<{ title: string; value?: string | number }> = ({
-  title,
-  value,
-}) => (
+export const Card: React.FC<{
+  title: React.ReactText;
+  value?: string | number;
+}> = ({ title, value }) => (
   <li
     className="mr-4 mb-4 flex flex-col items-center justify-center p-6 text-center"
     style={{ flex: '1 1 30%' }}

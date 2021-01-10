@@ -1,21 +1,21 @@
 import Card from 'common/card';
-import { StripeData, StripeTypes } from 'pages/api/stripe';
+import { TwitterData, TwitterError, TwitterTypes } from 'pages/api/twitter';
 import React from 'react';
 
-export const StripeStats = () => {
-  const [{ status, data }, setState] = React.useState<{
+export const TwitterStats = () => {
+  const [{ status, data, error }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
-    data?: StripeData;
-    error?: Error;
+    data?: TwitterData;
+    error?: TwitterError;
   }>({ status: 'idle' });
 
   React.useEffect(() => {
-    const fetchData = async (type: StripeTypes) => {
+    const fetchData = async (type: TwitterTypes) => {
       setState((prev) => ({ ...prev, status: 'pending' }));
 
       try {
         const response = await fetch(
-          process.env.APP_URL + '/api/stripe?type=' + type,
+          process.env.APP_URL + '/api/twitter?type=' + type,
         );
 
         if (!response.ok) {
@@ -24,7 +24,7 @@ export const StripeStats = () => {
         }
 
         const { data } = (await response.json()) as {
-          data: StripeData;
+          data: TwitterData;
         };
 
         return setState((prev) => ({
@@ -43,7 +43,7 @@ export const StripeStats = () => {
     };
 
     const fetchAll = async () =>
-      await Promise.all([fetchData(StripeTypes.REVENUE)]);
+      await Promise.all([fetchData(TwitterTypes.FOLLOWERS)]);
 
     if (status === 'idle') {
       fetchAll();
@@ -52,8 +52,8 @@ export const StripeStats = () => {
 
   return (
     <Card
-      title="Sales"
-      value={data?.revenue ? '$' + data?.revenue : undefined}
+      title={error?.code || 'Followers'}
+      value={error?.message || data?.followers}
     />
   );
 };
