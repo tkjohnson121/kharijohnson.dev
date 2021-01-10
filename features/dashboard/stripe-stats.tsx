@@ -53,10 +53,6 @@ export const StripeStats = () => {
     }
   }, []);
 
-  if (status === 'error' && error) {
-    return <pre>Stripe Error: {JSON.stringify(error, null, 2)}</pre>;
-  }
-
   return (
     <>
       <Card
@@ -64,21 +60,6 @@ export const StripeStats = () => {
         value={data?.revenue ? '$' + data?.revenue : undefined}
       />
       <Card title="Products" value={data?.products?.length} />
-
-      {/* <List
-        title="Products"
-        values={data?.products}
-        renderValue={(product: StripeProduct) => (
-          <li key={product.id} className="flex mr-4 mb-4 items-center">
-            <img
-              src={product.images[0]}
-              alt={product.name}
-              className="rounded-full mr-2 h-8 w-8"
-            />
-            <p className="font-bold">{product.name}</p>
-          </li>
-        )}
-      /> */}
     </>
   );
 };

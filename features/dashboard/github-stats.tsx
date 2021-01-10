@@ -33,12 +33,6 @@ export const GithubStats = () => {
     fetchData();
   }, []);
 
-  if (errors) {
-    return (
-      <pre>GitHub Error: {errors.map((error) => error.message).join(', ')}</pre>
-    );
-  }
-
   return (
     <List
       title={`Repos (${data?.user.public_repos || 0} repos | ${data?.stars ||

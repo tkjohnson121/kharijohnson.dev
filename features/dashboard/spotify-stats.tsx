@@ -53,10 +53,6 @@ export const SpotifyStats = () => {
     }
   }, []);
 
-  if (status === 'error' && error) {
-    return <pre>Spotify Error: {JSON.stringify(error, null, 2)}</pre>;
-  }
-
   return (
     <>
       <List

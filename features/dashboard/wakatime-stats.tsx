@@ -36,10 +36,6 @@ export const WakaTimeStats = () => {
     fetchData();
   }, []);
 
-  if (errors) {
-    return <pre>Wakatime Error: {errors?.join(', ')}</pre>;
-  }
-
   return (
     <>
       <Card

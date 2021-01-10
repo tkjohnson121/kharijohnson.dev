@@ -50,9 +50,5 @@ export const ConvertkitStats = () => {
     }
   }, []);
 
-  if (status === 'error' && error) {
-    return <pre>Convertkit Error: {JSON.stringify(error, null, 2)}</pre>;
-  }
-
   return <Card title="Subscribers" value={data?.subscribers} />;
 };
