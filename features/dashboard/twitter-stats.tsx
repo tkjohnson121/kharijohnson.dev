@@ -3,7 +3,7 @@ import { TwitterData, TwitterError, TwitterTypes } from 'pages/api/twitter';
 import React from 'react';
 
 export const TwitterStats = () => {
-  const [{ status, data, error }, setState] = React.useState<{
+  const [{ status, data }, setState] = React.useState<{
     status: 'idle' | 'pending' | 'fulfilled' | 'error';
     data?: TwitterData;
     error?: TwitterError;
@@ -34,6 +34,7 @@ export const TwitterStats = () => {
         }));
       } catch (error) {
         console.error(error);
+
         return setState((prev) => ({
           ...prev,
           status: 'error',
@@ -50,10 +51,5 @@ export const TwitterStats = () => {
     }
   }, []);
 
-  return (
-    <Card
-      title={error?.code || 'Followers'}
-      value={error?.message || data?.followers}
-    />
-  );
+  return <Card title={'Followers'} value={data?.followers} />;
 };
