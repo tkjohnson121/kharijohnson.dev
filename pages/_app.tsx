@@ -10,10 +10,10 @@ const App = ({ Component, pageProps }: AppProps) => {
           .register('/service-worker.js', {
             scope: '/',
           })
-          .then(function(registration) {
+          .then(function (registration) {
             console.info('SW: registered -> ', registration);
           })
-          .catch(function(registrationError) {
+          .catch(function (registrationError) {
             console.info('SW: failed -> ', registrationError);
           });
       });
